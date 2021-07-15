@@ -18,14 +18,33 @@ enum AddressType {
   "Address can be used as a mailing address for sending physical items"
   shipping
 }
+input GeolocationInput {
+  latitude: Float
+  longitude: Float
+}
+input CustomAddressInput {
+  description: String
+  address: String
+  reference: String
+  geolocation: GeolocationInput
+}"Defines a new Address and the account to which it should be added"
+input CustomAddAccountAddressBookEntryInput {
+  "The account ID"
+  accountId: ID!
 
+  "The address to add"
+  address: CustomAddressInput!
+
+  "An optional string identifying the mutation call, which will be returned in the response payload"
+  clientMutationId: String
+}
 "Defines a new Address and the account to which it should be added"
 input AddAccountAddressBookEntryInput {
   "The account ID"
   accountId: ID!
 
   "The address to add"
-  address: AddressInput!
+  address: CustomAddressInput!
 
   "An optional string identifying the mutation call, which will be returned in the response payload"
   clientMutationId: String
@@ -70,7 +89,7 @@ input UpdateAccountAddressBookEntryInput {
   type: AddressType
 
   "The address changes to apply"
-  updates: AddressInput!
+  updates: CustomAddressInput!
 }
 
 "Describes which address should be removed from which account"
@@ -287,14 +306,28 @@ type AccountEdge implements NodeEdge {
   "The account"
   node: Account
 }
-
+type Geolocation {
+  latitude: Float
+  longitude: Float
+}
+type CustomAddress {
+  _id: ID
+  description: String
+  address: String
+  reference: String
+  geolocation: Geolocation
+}
+type CustomAddressEdge {
+  cursor: ConnectionCursor!
+  node: CustomAddress
+}
 "The response from the `addAccountAddressBookEntry` mutation"
 type AddAccountAddressBookEntryPayload {
   "The added address"
-  address: Address
+  address: CustomAddress
 
   "The added address edge"
-  addressEdge: AddressEdge
+  addressEdge: CustomAddressEdge
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String
@@ -330,7 +363,7 @@ type SendResetAccountPasswordEmailPayload {
 "The response from the `removeAccountAddressBookEntry` mutation"
 type RemoveAccountAddressBookEntryPayload {
   "The removed address"
-  address: Address
+  address: CustomAddress
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String
@@ -357,7 +390,7 @@ type SetAccountDefaultEmailPayload {
 "The response from the `updateAccountAddressBookEntry` mutation"
 type UpdateAccountAddressBookEntryPayload {
   "The updated address"
-  address: Address
+  address: CustomAddress
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String

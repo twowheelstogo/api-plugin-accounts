@@ -1,9 +1,9 @@
 import SimpleSchema from "simpl-schema";
 import ReactionError from "@reactioncommerce/reaction-error";
-import { AccountProfileAddress } from "../simpleSchemas.js";
+import { AccountProfileAddress, CustomAccountProfileAddress } from "../simpleSchemas.js";
 
 const inputSchema = new SimpleSchema({
-  address: AccountProfileAddress,
+  address: CustomAccountProfileAddress,
   accountId: String,
   type: {
     type: String,

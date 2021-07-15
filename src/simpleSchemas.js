@@ -42,6 +42,33 @@ const Metafield = new SimpleSchema({
   }
 });
 
+export const Geolocation = new SimpleSchema({
+  "latitude": {
+    type: Number
+  },
+  "longitude": {
+    type: Number
+  }
+})
+
+export const CustomAccountProfileAddress = new SimpleSchema({
+  "_id":String,
+  "description":{
+    type: String,
+    label: "Description"
+  },
+  "address":{
+    type: String,
+    label: "Address"
+  },
+  "reference": {
+    type: String,
+    label: "Reference"
+  },
+  "geolocation": {
+    type: Geolocation
+  }
+})
 const withoutCodeCountries = ["AO", "AG", "AW", "BS", "BZ", "BJ", "BW",
   "BF", "BI", "CM", "CF", "KM", "CG", "CD", "CK", "CI", "DJ",
   "DM", "GQ", "ER", "FJ", "TF", "GM", "GH", "GD", "GN", "GY",
