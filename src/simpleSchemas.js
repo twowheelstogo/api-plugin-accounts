@@ -227,7 +227,7 @@ export const Profile = new SimpleSchema({
     optional: true
   },
   "addressBook.$": {
-    type: AccountProfileAddress
+    type: CustomAccountProfileAddress
   },
   "firstName": {
     type: String,
