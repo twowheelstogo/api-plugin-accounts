@@ -23,6 +23,7 @@ input GeolocationInput {
   longitude: Float
 }
 input CustomAddressInput {
+  _id: ID
   description: String
   address: String
   reference: String
