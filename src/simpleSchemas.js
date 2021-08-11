@@ -66,7 +66,8 @@ export const CustomAccountProfileAddress = new SimpleSchema({
     label: "Reference"
   },
   "geolocation": {
-    type: Geolocation
+    type: Geolocation,
+    optional: true
   }
 })
 const withoutCodeCountries = ["AO", "AG", "AW", "BS", "BZ", "BJ", "BW",
