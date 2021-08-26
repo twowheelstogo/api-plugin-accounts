@@ -12,6 +12,7 @@ import ReactionError from "@reactioncommerce/reaction-error";
  * @returns {Promise<Object>} with updated address
  */
 export default async function addressBookAdd(context, address, accountUserId) {
+  console.log("address", address);
   address.distance_meta = await context.mutations.getAddressDistance(context, address.geolocation);
   const { appEvents, collections, userId: userIdFromContext } = context;
   const { Accounts } = collections;
