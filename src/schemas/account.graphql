@@ -216,6 +216,12 @@ type CustomAddress {
   address: String
   reference: String
   geolocation: Geolocation
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance_meta: DistanceInput
 }
 type CustomAddressEdge {
   cursor: ConnectionCursor!
