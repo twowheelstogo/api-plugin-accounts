@@ -27,6 +27,7 @@ export default async function updateAccountAddressBookEntry(context, input) {
   const { appEvents, collections, userId: userIdFromContext } = context;
   const { Accounts } = collections;
   const { address, accountId, type } = input;
+  address.distance_meta = await context.mutations.getAddressDistance(context, address.geolocation);
 
   const account = await Accounts.findOne({ _id: accountId });
 

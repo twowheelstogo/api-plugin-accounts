@@ -22,12 +22,22 @@ input GeolocationInput {
   latitude: Float
   longitude: Float
 }
+input DistanceInput {
+  value: Float
+  text: String
+}
 input CustomAddressInput {
   _id: ID
   description: String
   address: String
   reference: String
   geolocation: GeolocationInput
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance_meta: DistanceInput
 }"Defines a new Address and the account to which it should be added"
 input CustomAddAccountAddressBookEntryInput {
   "The account ID"
