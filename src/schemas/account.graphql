@@ -210,7 +210,7 @@ type Geolocation {
   latitude: Float
   longitude: Float
 }
-input Distance {
+type Distance {
   value: Float
   text: String
 }
