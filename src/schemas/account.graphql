@@ -210,6 +210,10 @@ type Geolocation {
   latitude: Float
   longitude: Float
 }
+input Distance {
+  value: Float
+  text: String
+}
 type CustomAddress {
   _id: ID
   description: String
@@ -221,7 +225,7 @@ type CustomAddress {
   neighborhood: String
   street_address: String
   sublocality: String
-  distance_meta: DistanceInput
+  distance_meta: Distance
 }
 type CustomAddressEdge {
   cursor: ConnectionCursor!
