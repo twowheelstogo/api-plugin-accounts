@@ -60,24 +60,7 @@ export const DistanceMeta = new SimpleSchema({
   }
 })
 
-export const CustomAccountProfileAddress = new SimpleSchema({
-  "_id":String,
-  "description":{
-    type: String,
-    label: "Description"
-  },
-  "address":{
-    type: String,
-    label: "Address"
-  },
-  "reference": {
-    type: String,
-    label: "Reference"
-  },
-  "geolocation": {
-    type: Geolocation,
-    optional: true
-  },
+export const Metaddress = new SimpleSchema({
   "administrative_area_level_1":{
     type: String,
     optional: true
@@ -98,8 +81,32 @@ export const CustomAccountProfileAddress = new SimpleSchema({
     type: String,
     optional: true
   },
-  "distance_meta":{
+  "distance":{
     type: DistanceMeta,
+    optional: true
+  }
+})
+
+export const CustomAccountProfileAddress = new SimpleSchema({
+  "_id":String,
+  "description":{
+    type: String,
+    label: "Description"
+  },
+  "address":{
+    type: String,
+    label: "Address"
+  },
+  "reference": {
+    type: String,
+    label: "Reference"
+  },
+  "geolocation": {
+    type: Geolocation,
+    optional: true
+  },
+  "metaddress": {
+    type: Metaddress,
     optional: true
   }
 })

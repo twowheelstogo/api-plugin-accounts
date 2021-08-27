@@ -26,18 +26,21 @@ input DistanceInput {
   value: Float
   text: String
 }
+input MetaddressInput {
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance: DistanceInput
+}
 input CustomAddressInput {
   _id: ID
   description: String
   address: String
   reference: String
   geolocation: GeolocationInput
-  administrative_area_level_1: String
-  administrative_area_level_2: String
-  neighborhood: String
-  street_address: String
-  sublocality: String
-  distance_meta: DistanceInput
+  metaddress: MetaddressInput
 }"Defines a new Address and the account to which it should be added"
 input CustomAddAccountAddressBookEntryInput {
   "The account ID"
@@ -214,18 +217,21 @@ type Distance {
   value: Float
   text: String
 }
+type Metaddress{
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance: Distance
+}
 type CustomAddress {
   _id: ID
   description: String
   address: String
   reference: String
   geolocation: Geolocation
-  administrative_area_level_1: String
-  administrative_area_level_2: String
-  neighborhood: String
-  street_address: String
-  sublocality: String
-  distance_meta: Distance
+  metaddress: Metaddress
 }
 type CustomAddressEdge {
   cursor: ConnectionCursor!
