@@ -35,27 +35,30 @@ export default async function accounts(context, input) {
     selector.groups = { $in: [null, []] };
   }
 
-  if(query) {
+  if (query) {
     const cond = {
       $regex: query,
       $options: "i"
     };
-    selector = {
-      ...selector,
-      $or: [{
-        "profile.firstName": cond
-      },
-      {
-        "profile.lastName": cond
-      },
-      {
-        "profile.name": cond
-      },
-      {
-        "emails.address": cond
-      }]
-    }
+    const curr = selector.$or || [];
+    const newSelector = [...curr, ...[{
+      "profile.firstName": cond
+    },
+    {
+      "profile.lastName": cond
+    },
+    {
+      "profile.name": cond
+    },
+    {
+      "emails.address": cond
+    }]];
+    
+    selector.$or = newSelector;
   }
+
+  console.log("query", query);
+  console.log("selector", selector);
 
   return Accounts.find(selector);
 }
