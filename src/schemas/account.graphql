@@ -503,6 +503,9 @@ extend type Query {
     "Return only accounts in any of these groups"
     groupIds: [ID],
 
+    "Query accounts"
+    query: String,
+
     "Return accounts that aren't in any groups"
     notInAnyGroups: Boolean,
 
