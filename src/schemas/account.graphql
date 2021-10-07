@@ -535,6 +535,9 @@ extend type Query {
     "Query accounts"
     query: String
 
+    "Query accounts"
+    query: String,
+
     "Return accounts that aren't in any groups"
     notInAnyGroups: Boolean
 
