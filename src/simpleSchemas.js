@@ -315,6 +315,11 @@ export const Profile = new SimpleSchema({
     type: Object,
     blackbox: true,
     optional: true
+  },
+  "phone":{
+    label: "User phone",
+    type: String,
+    optional: true
   }
 });
 

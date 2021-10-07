@@ -147,6 +147,9 @@ input UpdateAccountInput {
   "The preferred language (code) used by this account"
   language: String
 
+  "The phone of account"
+  phone: String
+
   "The last name of the person this account represents"
   lastName: String
 
@@ -294,6 +297,9 @@ type Account implements Node {
 
   "The preferred language used by this account"
   language: String
+
+  "The phone of account"
+  phone: String
 
   "The last name of the person this account represents, if known"
   lastName: String
