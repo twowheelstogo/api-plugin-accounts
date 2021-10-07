@@ -41,7 +41,8 @@ input CustomAddressInput {
   reference: String
   geolocation: GeolocationInput
   metaddress: MetaddressInput
-}"Defines a new Address and the account to which it should be added"
+}
+"Defines a new Address and the account to which it should be added"
 input CustomAddAccountAddressBookEntryInput {
   "The account ID"
   accountId: ID!
@@ -147,7 +148,7 @@ input UpdateAccountInput {
   "The preferred language (code) used by this account"
   language: String
 
-  "The phone of account"
+  "The phone used by this account"
   phone: String
 
   "The last name of the person this account represents"
@@ -220,7 +221,7 @@ type Distance {
   value: Float
   text: String
 }
-type Metaddress{
+type Metaddress {
   administrative_area_level_1: String
   administrative_area_level_2: String
   neighborhood: String
@@ -262,16 +263,16 @@ type Account implements Node {
   "A list of physical or mailing addresses associated with this account"
   addressBook(
     "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
-    after: ConnectionCursor,
+    after: ConnectionCursor
 
     "Return only results that come before this cursor. Use this with `last` to specify the number of results to return."
-    before: ConnectionCursor,
+    before: ConnectionCursor
 
     "Return at most this many results. This parameter may be used with either `after` or `offset` parameters."
-    first: ConnectionLimitInt,
+    first: ConnectionLimitInt
 
     "Return at most this many results. This parameter may be used with the `before` parameter."
-    last: ConnectionLimitInt,
+    last: ConnectionLimitInt
 
     "Return only results that come after the Nth result. This parameter may be used with the `first` parameter."
     offset: Int
@@ -298,7 +299,7 @@ type Account implements Node {
   "The preferred language used by this account"
   language: String
 
-  "The phone of account"
+  "The phone used by this account"
   phone: String
 
   "The last name of the person this account represents, if known"
@@ -367,7 +368,6 @@ type AccountEdge implements NodeEdge {
   "The account"
   node: Account
 }
-
 
 "The response from the `addAccountAddressBookEntry` mutation"
 type AddAccountAddressBookEntryPayload {
@@ -525,36 +525,36 @@ extend type Mutation {
 
 extend type Query {
   "Returns the account with the provided ID"
-  account(
-    "The account ID"
-    id: ID!
-  ): Account
+  account("The account ID" id: ID!): Account
 
   "Returns accounts optionally filtered by account groups"
   accounts(
     "Return only accounts in any of these groups"
-    groupIds: [ID],
+    groupIds: [ID]
+
+    "Query accounts"
+    query: String
 
     "Return accounts that aren't in any groups"
-    notInAnyGroups: Boolean,
+    notInAnyGroups: Boolean
 
     "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
-    after: ConnectionCursor,
+    after: ConnectionCursor
 
     "Return only results that come before this cursor. Use this with `last` to specify the number of results to return."
-    before: ConnectionCursor,
+    before: ConnectionCursor
 
     "Return at most this many results. This parameter may be used with either `after` or `offset` parameters."
-    first: ConnectionLimitInt,
+    first: ConnectionLimitInt
 
     "Return at most this many results. This parameter may be used with the `before` parameter."
-    last: ConnectionLimitInt,
+    last: ConnectionLimitInt
 
     "Return only results that come after the Nth result. This parameter may be used with the `first` parameter."
-    offset: Int,
+    offset: Int
 
     "Return results sorted in this order"
-    sortOrder: SortOrder = asc,
+    sortOrder: SortOrder = asc
 
     "By default, groups are sorted by when they were created, oldest first. Set this to sort by one of the other allowed fields"
     sortBy: AccountSortByField = createdAt
@@ -563,22 +563,22 @@ extend type Query {
   "Returns customer accounts"
   customers(
     "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
-    after: ConnectionCursor,
+    after: ConnectionCursor
 
     "Return only results that come before this cursor. Use this with `last` to specify the number of results to return."
-    before: ConnectionCursor,
+    before: ConnectionCursor
 
     "Return at most this many results. This parameter may be used with either `after` or `offset` parameters."
-    first: ConnectionLimitInt,
+    first: ConnectionLimitInt
 
     "Return at most this many results. This parameter may be used with the `before` parameter."
-    last: ConnectionLimitInt,
+    last: ConnectionLimitInt
 
     "Return only results that come after the Nth result. This parameter may be used with the `first` parameter."
-    offset: Int,
+    offset: Int
 
     "Return results sorted in this order"
-    sortOrder: SortOrder = asc,
+    sortOrder: SortOrder = asc
 
     "By default, groups are sorted by when they were created, oldest first. Set this to sort by one of the other allowed fields"
     sortBy: AccountSortByField = createdAt
