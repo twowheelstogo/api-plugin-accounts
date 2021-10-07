@@ -18,14 +18,47 @@ enum AddressType {
   "Address can be used as a mailing address for sending physical items"
   shipping
 }
+input GeolocationInput {
+  latitude: Float
+  longitude: Float
+}
+input DistanceInput {
+  value: Float
+  text: String
+}
+input MetaddressInput {
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance: DistanceInput
+}
+input CustomAddressInput {
+  _id: ID
+  description: String
+  address: String
+  reference: String
+  geolocation: GeolocationInput
+  metaddress: MetaddressInput
+}"Defines a new Address and the account to which it should be added"
+input CustomAddAccountAddressBookEntryInput {
+  "The account ID"
+  accountId: ID!
 
+  "The address to add"
+  address: CustomAddressInput!
+
+  "An optional string identifying the mutation call, which will be returned in the response payload"
+  clientMutationId: String
+}
 "Defines a new Address and the account to which it should be added"
 input AddAccountAddressBookEntryInput {
   "The account ID"
   accountId: ID!
 
   "The address to add"
-  address: AddressInput!
+  address: CustomAddressInput!
 
   "An optional string identifying the mutation call, which will be returned in the response payload"
   clientMutationId: String
@@ -70,7 +103,7 @@ input UpdateAccountAddressBookEntryInput {
   type: AddressType
 
   "The address changes to apply"
-  updates: AddressInput!
+  updates: CustomAddressInput!
 }
 
 "Describes which address should be removed from which account"
@@ -113,6 +146,9 @@ input UpdateAccountInput {
 
   "The preferred language (code) used by this account"
   language: String
+
+  "The phone of account"
+  phone: String
 
   "The last name of the person this account represents"
   lastName: String
@@ -176,7 +212,48 @@ input UpdateGroupsForAccountsInput {
   "The group IDs"
   groupIds: [ID]!
 }
+type Geolocation {
+  latitude: Float
+  longitude: Float
+}
+type Distance {
+  value: Float
+  text: String
+}
+type Metaddress{
+  administrative_area_level_1: String
+  administrative_area_level_2: String
+  neighborhood: String
+  street_address: String
+  sublocality: String
+  distance: Distance
+}
+type CustomAddress {
+  _id: ID
+  description: String
+  address: String
+  reference: String
+  geolocation: Geolocation
+  metaddress: Metaddress
+}
+type CustomAddressEdge {
+  cursor: ConnectionCursor!
+  node: CustomAddress
+}
+type CustomAddressConnection {
+  "The list of nodes that match the query, wrapped in an edge to provide a cursor string for each"
+  edges: [CustomAddressEdge]
 
+  """
+  You can request the `nodes` directly to avoid the extra wrapping that `NodeEdge` has,
+  if you know you will not need to paginate the results.
+  """
+  nodes: [CustomAddress]
+  "Information to help a client request the next or previous page"
+  pageInfo: PageInfo!
+  "The total number of nodes that match your query"
+  totalCount: Int!
+}
 "Represents a single user account"
 type Account implements Node {
   "The account ID"
@@ -198,7 +275,7 @@ type Account implements Node {
 
     "Return only results that come after the Nth result. This parameter may be used with the `first` parameter."
     offset: Int
-  ): AddressConnection
+  ): CustomAddressConnection
 
   "A list of shops this user can administer with the admin UI"
   adminUIShops: [Shop]
@@ -220,6 +297,9 @@ type Account implements Node {
 
   "The preferred language used by this account"
   language: String
+
+  "The phone of account"
+  phone: String
 
   "The last name of the person this account represents, if known"
   lastName: String
@@ -288,13 +368,14 @@ type AccountEdge implements NodeEdge {
   node: Account
 }
 
+
 "The response from the `addAccountAddressBookEntry` mutation"
 type AddAccountAddressBookEntryPayload {
   "The added address"
-  address: Address
+  address: CustomAddress
 
   "The added address edge"
-  addressEdge: AddressEdge
+  addressEdge: CustomAddressEdge
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String
@@ -330,7 +411,7 @@ type SendResetAccountPasswordEmailPayload {
 "The response from the `removeAccountAddressBookEntry` mutation"
 type RemoveAccountAddressBookEntryPayload {
   "The removed address"
-  address: Address
+  address: CustomAddress
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String
@@ -357,7 +438,7 @@ type SetAccountDefaultEmailPayload {
 "The response from the `updateAccountAddressBookEntry` mutation"
 type UpdateAccountAddressBookEntryPayload {
   "The updated address"
-  address: Address
+  address: CustomAddress
 
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
   clientMutationId: String

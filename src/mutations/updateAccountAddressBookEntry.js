@@ -1,9 +1,9 @@
 import SimpleSchema from "simpl-schema";
 import ReactionError from "@reactioncommerce/reaction-error";
-import { AccountProfileAddress } from "../simpleSchemas.js";
+import { AccountProfileAddress, CustomAccountProfileAddress } from "../simpleSchemas.js";
 
 const inputSchema = new SimpleSchema({
-  address: AccountProfileAddress,
+  address: CustomAccountProfileAddress,
   accountId: String,
   type: {
     type: String,
@@ -27,7 +27,6 @@ export default async function updateAccountAddressBookEntry(context, input) {
   const { appEvents, collections, userId: userIdFromContext } = context;
   const { Accounts } = collections;
   const { address, accountId, type } = input;
-
   const account = await Accounts.findOne({ _id: accountId });
 
   if (!account) throw new ReactionError("not-found", "No account found");
