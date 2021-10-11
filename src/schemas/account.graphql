@@ -83,10 +83,19 @@ input CreateAccountInput {
   shopId: ID!
 
   "The userID account was created from create a new account from"
-  userId: ID!
+  userId: ID
 
   "Username"
   username: String
+
+  "phone"
+  phone: String
+
+  "firstName"
+  firstName: String
+
+  "lastName"
+  lastName: String
 }
 
 "Describes changes that should be applied to one of the addresses for an account"
@@ -477,6 +486,11 @@ extend type Mutation {
   "Create an account based off a user"
   createAccount(
     "Mutation input"
+    input: CreateAccountInput!
+  ): CreateAccountPayload
+
+  "Create account without credentials"
+  createAccountWithoutCredentials(
     input: CreateAccountInput!
   ): CreateAccountPayload
 
