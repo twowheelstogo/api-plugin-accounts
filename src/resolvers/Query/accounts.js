@@ -16,14 +16,14 @@ import { decodeGroupOpaqueId } from "../../xforms/id.js";
  * @returns {Promise<Object>} Promise containing queried accounts
  */
 export default async function accounts(_, args, context, info) {
-  const { groupIds: opaqueGroupIds, notInAnyGroups, ...connectionArgs } = args;
+  const { groupIds: opaqueGroupIds, notInAnyGroups, query: queryFilters, ...connectionArgs } = args;
 
   let groupIds;
   if (opaqueGroupIds) {
     groupIds = opaqueGroupIds.map((opaqueGroupId) => decodeGroupOpaqueId(opaqueGroupId));
   }
 
-  const query = await context.queries.accounts(context, { groupIds, notInAnyGroups });
+  const query = await context.queries.accounts(context, { groupIds, notInAnyGroups, query: queryFilters });
 
   return getPaginatedResponse(query, connectionArgs, {
     includeHasNextPage: wasFieldRequested("pageInfo.hasNextPage", info),

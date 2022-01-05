@@ -67,39 +67,39 @@ export const DistanceMeta = new SimpleSchema({
 })
 
 export const Metaddress = new SimpleSchema({
-  "administrative_area_level_1":{
+  "administrative_area_level_1": {
     type: String,
     optional: true
   },
-  "administrative_area_level_2":{
+  "administrative_area_level_2": {
     type: String,
     optional: true
   },
-  "neighborhood":{
+  "neighborhood": {
     type: String,
     optional: true
   },
-  "street_address":{
+  "street_address": {
     type: String,
     optional: true
   },
-  "sublocality":{
+  "sublocality": {
     type: String,
     optional: true
   },
-  "distance":{
+  "distance": {
     type: DistanceMeta,
     optional: true
   }
 })
 
 export const CustomAccountProfileAddress = new SimpleSchema({
-  "_id":String,
-  "description":{
+  "_id": String,
+  "description": {
     type: String,
     label: "Description"
   },
-  "address":{
+  "address": {
     type: String,
     label: "Address"
   },
@@ -322,7 +322,7 @@ export const Profile = new SimpleSchema({
     blackbox: true,
     optional: true
   },
-  "phone":{
+  "phone": {
     label: "User phone",
     type: String,
     optional: true
@@ -376,7 +376,10 @@ export const Email = new SimpleSchema({
  */
 export const Account = new SimpleSchema({
   "_id": String,
-  "userId": String,
+  "userId": {
+    type: String,
+    optional: true
+  },
   "sessions": {
     type: Array,
     optional: true

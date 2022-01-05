@@ -85,10 +85,19 @@ input CreateAccountInput {
   shopId: ID!
 
   "The userID account was created from create a new account from"
-  userId: ID!
+  userId: ID
 
   "Username"
   username: String
+
+  "phone"
+  phone: String
+
+  "firstName"
+  firstName: String
+
+  "lastName"
+  lastName: String
 }
 
 "Describes changes that should be applied to one of the addresses for an account"
@@ -484,6 +493,11 @@ extend type Mutation {
     input: CreateAccountInput!
   ): CreateAccountPayload
 
+  "Create account without credentials"
+  createAccountWithoutCredentials(
+    input: CreateAccountInput!
+  ): CreateAccountPayload
+
   "Remove an address from the `addressBook` field for an account"
   removeAccountAddressBookEntry(
     "Mutation input"
@@ -538,6 +552,9 @@ extend type Query {
 
     "Query accounts"
     query: String
+
+    "Query accounts"
+    query: String,
 
     "Return accounts that aren't in any groups"
     notInAnyGroups: Boolean

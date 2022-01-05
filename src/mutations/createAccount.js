@@ -3,6 +3,7 @@ import Logger from "@reactioncommerce/logger";
 import ensureAccountsManagerGroup from "../util/ensureAccountsManagerGroup.js";
 import ensureSystemManagerGroup from "../util/ensureSystemManagerGroup.js";
 import sendWelcomeEmail from "../util/sendWelcomeEmail.js";
+import Random from "@reactioncommerce/random";
 
 const inputSchema = new SimpleSchema({
   "emails": Array,
@@ -23,7 +24,14 @@ const inputSchema = new SimpleSchema({
     type: String,
     optional: true
   },
-  "userId": String
+  "userId": {
+    type: String,
+    optional: true
+  },
+  "username": {
+    type: String,
+    optional: true
+  }
 });
 
 /**
@@ -40,6 +48,7 @@ const inputSchema = new SimpleSchema({
  * @return {Promise<Object>} with boolean of found new account === true || false
  */
 export default async function createAccount(context, input) {
+  console.log("Creating account");
   inputSchema.validate(input);
 
   const {
@@ -56,15 +65,17 @@ export default async function createAccount(context, input) {
     name = null,
     profile,
     shopId = null,
-    userId
+    userId,
   } = input;
 
   await context.validatePermissions("reaction:legacy:accounts", "create", { shopId });
 
   // Create initial account object from user and profile
   const createdAt = new Date();
+  const id = Random.id();
+
   const account = {
-    _id: userId,
+    _id: userId || id,
     acceptsMarketing: false,
     createdAt,
     emails,
@@ -75,8 +86,10 @@ export default async function createAccount(context, input) {
     shopId,
     state: "new",
     updatedAt: createdAt,
-    userId
+    userId: userId || id
   };
+
+  console.log(account);
 
   let groups = new Set();
   let invites;
