@@ -7,7 +7,6 @@ const { REACTION_IDENTITY_PUBLIC_PASSWORD_RESET_URL } = config;
 
 const inputSchema = new SimpleSchema({
   email: String,
-  url: String,
 });
 
 /**
@@ -73,6 +72,7 @@ async function sendResetEmail(context, account, email, url) {
  * @return {Promise<Object>} with email address if found
  */
 export default async function sendResetAccountPasswordEmail(context, input) {
+  console.log("input", input);
   inputSchema.validate(input);
   const { collections } = context;
   const { Accounts } = collections;
