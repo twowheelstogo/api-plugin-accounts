@@ -94,7 +94,7 @@ export default async function sendResetAccountPasswordEmail(context, input) {
     return email;
   }
 
-  const { email, token } = result;
+  const { token } = result;
 
   let url = `${REACTION_IDENTITY_PUBLIC_PASSWORD_RESET_URL}`;
   url = url.replace("TOKEN", token);
