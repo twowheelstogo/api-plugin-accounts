@@ -73,8 +73,10 @@ async function sendResetEmail(context, account, email, url) {
  */
 export default async function sendResetAccountPasswordEmail(
   context,
-  { input }
+  { input },
+  demo
 ) {
+  console.log("demo", demo);
   console.log("contex", context);
   inputSchema.validate(input);
   const { collections } = context;
