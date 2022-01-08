@@ -76,7 +76,6 @@ export default async function sendResetAccountPasswordEmail(
   { input },
   context
 ) {
-
   const { collections } = context;
   const { Accounts } = collections;
   const { email } = input;
@@ -104,5 +103,5 @@ export default async function sendResetAccountPasswordEmail(
 
   await sendResetEmail(context, account, caseInsensitiveEmail, url);
 
-  return email;
+  return { email, clientMutationId: "" };
 }

@@ -67,7 +67,6 @@ async function sendResetEmail(context, account, email, url) {
  * @return {Promise<Object>} with email address if found
  */
 export default async function sendResetAccountPasswordEmail(context, input) {
-  console.log("entra aca jajaj")
   inputSchema.validate(input);
   const { collections } = context;
   const { Accounts } = collections;
