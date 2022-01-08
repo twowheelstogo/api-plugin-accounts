@@ -15,6 +15,7 @@ export default {
   firstName: (account) => account.profile.firstName,
   groups,
   lastName: (account) => account.profile.lastName,
+  phone: (account) => account.profile.phone,
   language: (account) => account.profile.language,
   name: (account) => account.profile.name || account.name,
   picture: (account) => account.profile.picture,

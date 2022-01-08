@@ -24,6 +24,10 @@ const inputSchema = new SimpleSchema({
     type: String,
     optional: true
   },
+  phone: {
+    type: String,
+    optional: true
+  },
   lastName: {
     type: String,
     optional: true
