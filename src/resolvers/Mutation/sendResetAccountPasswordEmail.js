@@ -75,6 +75,7 @@ export default async function sendResetAccountPasswordEmail(
   context,
   { input }
 ) {
+  console.log("contex", context);
   inputSchema.validate(input);
   const { collections } = context;
   const { Accounts } = collections;
