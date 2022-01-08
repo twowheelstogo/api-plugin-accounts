@@ -59,10 +59,12 @@ export const DistanceMeta = new SimpleSchema({
     type: String
   },
   "branch": {
-    type: String
+    type: String,
+    optional: true
   },
   "branchId": {
-    type: String
+    type: String,
+    optional: true
   }
 })
 
