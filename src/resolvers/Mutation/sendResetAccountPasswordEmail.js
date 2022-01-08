@@ -1,7 +1,7 @@
 import _ from "lodash";
 import SimpleSchema from "simpl-schema";
 import ReactionError from "@reactioncommerce/reaction-error";
-import config from "../config.js";
+import config from "../../config.js";
 
 const { REACTION_IDENTITY_PUBLIC_PASSWORD_RESET_URL } = config;
 
