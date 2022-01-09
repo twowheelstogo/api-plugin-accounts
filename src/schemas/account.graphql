@@ -25,8 +25,8 @@ input GeolocationInput {
 input DistanceInput {
   value: Float
   text: String
-  branch: String!
-  branchId: String!
+  branch: String
+  branchId: String
 }
 input MetaddressInput {
   administrative_area_level_1: String
@@ -231,8 +231,8 @@ type Geolocation {
 type Distance {
   value: Float
   text: String
-  branch: String!
-  branchId: String!
+  branch: String
+  branchId: String
 }
 type Metaddress {
   administrative_area_level_1: String
