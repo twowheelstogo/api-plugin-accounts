@@ -542,6 +542,14 @@ extend type Mutation {
 }
 
 extend type Query {
+  "Returns the Address updated with meta"
+  updateMetadataAddressBook(
+    "metaddress to update"
+    metaddress: MetaddressInput
+    "address id  to update"
+    addressId: ID
+  ): CustomAddress
+
   "Returns the account with the provided ID"
   account("The account ID" id: ID!): Account
 
@@ -554,7 +562,7 @@ extend type Query {
     query: String
 
     "Query accounts"
-    query: String,
+    query: String
 
     "Return accounts that aren't in any groups"
     notInAnyGroups: Boolean

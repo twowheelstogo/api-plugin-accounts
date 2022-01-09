@@ -17,6 +17,7 @@ import updateAccountGroup from "./updateAccountGroup.js";
 import updateAdminUIAccess from "./updateAdminUIAccess.js";
 import updateGroupsForAccounts from "./updateGroupsForAccounts.js";
 import createAccountWithoutCredentials from "./createAccountWithoutCredentials.js";
+import updateMetadataAddressBook from "./updateMetadataAddressBook.js";
 
 export default {
   addAccountAddressBookEntry,
@@ -37,5 +38,6 @@ export default {
   updateAccountGroup,
   updateAdminUIAccess,
   updateGroupsForAccounts,
-  createAccountWithoutCredentials
+  createAccountWithoutCredentials,
+  updateMetadataAddressBook,
 };
