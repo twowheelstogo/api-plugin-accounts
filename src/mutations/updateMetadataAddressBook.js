@@ -17,14 +17,13 @@ export default async function updateMetadataAddressBook(context, input) {
     collections: { Accounts },
   } = context;
 
-  const Account = await Accounts.findOneAndUpdate(
+  const { value: Account } = await Accounts.findOneAndUpdate(
     { "profile.addressBook._id": addressId },
     { $set: { "profile.addressBook.$.metaddress": metaddress } },
     {
       returnOriginal: false,
     }
   );
-  console.log("Account", Account);
   const _metaddress = await Account.profile.addressBook.find(
     (x) => x._id === addressId
   );
