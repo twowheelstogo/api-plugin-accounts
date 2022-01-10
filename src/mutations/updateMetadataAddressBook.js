@@ -24,7 +24,7 @@ export default async function updateMetadataAddressBook(context, input) {
       returnOriginal: false,
     }
   );
-
+  console.log("Account", Account);
   const _metaddress = await Account.profile.addressBook.find(
     (x) => x._id === addressId
   );
