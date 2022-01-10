@@ -13,13 +13,20 @@ import { decodeAccountOpaqueId, decodeGroupOpaqueId } from "../../xforms/id.js";
  * @param {Object} context - an object containing the per-request state
  * @returns {Object} UpdateGroupsForAccountsPayload
  */
-export default async function updateMetadataAddressBook(parentResult, { input }, context) {
+export default async function updateMetadataAddressBook(
+  parentResult,
+  input,
+  context
+) {
   const { addressId, metaddress } = input;
 
-  const _metaddress = await context.mutations.updateMetadataAddressBook(context, {
-    addressId,
-    metaddress
-  });
+  const _metaddress = await context.mutations.updateMetadataAddressBook(
+    context,
+    {
+      addressId,
+      metaddress,
+    }
+  );
 
   return _metaddress;
 }
