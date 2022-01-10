@@ -17,7 +17,7 @@ export default async function updateMetadataAddressBook(context, input) {
     collections: { Accounts },
   } = context;
 
-  const Account = await Accounts.update(
+  const Account = await Accounts.findOneAndUpdate(
     { "profile.addressBook._id": addressId },
     { $set: { "profile.addressBook.$.metaddress": metaddress } },
     {
