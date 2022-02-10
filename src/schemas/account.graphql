@@ -297,6 +297,9 @@ type Account implements Node {
   "Bio to display on profile"
   bio: String
 
+  "The related branch id"
+  branchId: String
+
   "The date and time at which this account was created"
   createdAt: DateTime!
 
