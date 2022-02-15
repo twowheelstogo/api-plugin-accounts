@@ -37,12 +37,29 @@ input MetaddressInput {
   distance: DistanceInput
 }
 input CustomAddressInput {
+  "The id to identify the address"
   _id: ID
+
+  "We use a description as an alias"
   description: String
+
+  "The exact address of locality"
   address: String
+
+  "Aditional indications"
   reference: String
+
+  "Exact address position"
   geolocation: GeolocationInput
+
+  "Aditional address information"
   metaddress: MetaddressInput
+  
+  "The person who recieves the order"
+  receiver: String
+
+  "Phone number of the person who receives the order"
+  phone: String
 }
 "Defines a new Address and the account to which it should be added"
 input CustomAddAccountAddressBookEntryInput {
@@ -243,12 +260,29 @@ type Metaddress {
   distance: Distance
 }
 type CustomAddress {
+  "The id to identify the address"
   _id: ID
+
+  "We use a description as an alias"
   description: String
+
+  "The exact address of locality"
   address: String
+
+  "Aditional indications"
   reference: String
+
+  "Exact address position"
   geolocation: Geolocation
+
+  "Aditional address information"
   metaddress: Metaddress
+  
+  "The person who recieves the order"
+  receiver: String
+
+  "Phone number of the person who receives the order"
+  phone: String
 }
 type CustomAddressEdge {
   cursor: ConnectionCursor!

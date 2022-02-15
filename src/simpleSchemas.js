@@ -116,6 +116,12 @@ export const CustomAccountProfileAddress = new SimpleSchema({
   "metaddress": {
     type: Metaddress,
     optional: true
+  },
+  "receiver": {
+    type: String
+  },
+  "phone": {
+    type: String
   }
 })
 const withoutCodeCountries = ["AO", "AG", "AW", "BS", "BZ", "BJ", "BW",
